@@ -173,6 +173,7 @@ const copyArrToCamelCase = arr => {
 
     return newArr
 }
+console.log(copyArrToCamelCase(lotr))
 
 const copyArrToSnakeCase = arr => {
     const newArr = []
@@ -189,8 +190,20 @@ const copyArrToSnakeCase = arr => {
 }
   
 // CODE HERE
+let myArr =[1,2,3,4,5,6]
+const multiplyByFour = num => num * 4;
 
-
+const copyArrAndChange = (arr, callBack) => {
+    let results =[];
+    for(let i=0; i< arr.length; i++){
+        let newValue = callBack(arr[i])
+        results.push(newValue)
+    }
+    return results
+}
+// let res = copyArrAndChange(myArr, multiplyByFour)
+let res = copyArrAndChange(myArr, num => num * 4)
+console.log(res)
 ////////////////////////////////////////
 ////// HIGHER ORDER ARRAY METHODS //////
 ////////////////////////////////////////
@@ -205,8 +218,8 @@ const copyArrToSnakeCase = arr => {
 
 const colors = ['red', 'blue', 'yellow', 'green', 'orange']
 
-// const mappedColors // = colors.map()
-
+const mappedColors = colors.map((el)=> 'pink')
+console.log(mappedColors)
 /*
     Edit the formalGreeting function and use the built in .map method 
     to map over the names parameter and return a new array with "Hello, " 
@@ -219,11 +232,13 @@ const formalNames = ['Bernard', 'Elizabeth', 'Conrad', 'Mary Margaret']
 
 const formalGreeting = names => {
     // CODE HERE
+    let formalArr = names.map((name)=>`Hello, ${name}`)
+    return formalArr
 }
 
 // Call formalGreeting passing in the formalNames array
-
-
+let fnames = formalGreeting(formalNames)
+console.log(fnames)
 //// FILTER ////
 
 /*
@@ -233,8 +248,8 @@ const formalGreeting = names => {
 
 const places = ['Binghampton', 'Albany', 'New York', 'Ithaca', 'Auburn', 'Rochester', 'Buffalo']
 
-// const placesThatStartWithA // = places.filter()
-
+ const placesThatStartWithA = places.filter((place)=> place[0] === 'A')
+console.log(placesThatStartWithA)
 
 /*
     Create a function called identifier that uses the filter higher order 
@@ -259,10 +274,11 @@ let jobs = [
 // Do not edit the code above.
 
 // CODE HERE
-
+const identifier = jobs.filter((el)=> el.programmer)[0]
 // call the function passing in the jobs array
-
-
+console.log(identifier)
+let {programmer} = identifier;
+console.log(programmer)
 //// REDUCE ////
 
 /*
@@ -277,14 +293,16 @@ const numsToReduce = [43, 7, 24, 79, 290]
 
 const productOfArray = numbers => {
     // Code here
+    let reduced = numbers.reduce((acc, curr)=> acc * curr)
+    return reduced;
 }
 
 // CODE HERE
 
 
 // call productOfArray passing in numsToReduce
-
-
+let result= productOfArray(numsToReduce)
+console.log(result)
 /*
     Pass a callback and an initial value to reduce 
     that will subtract all the expenses in the array
@@ -311,4 +329,5 @@ const expenses = [
     }
 ]
 
-// const remaining // = expenses.reduce(//callback, //initial value)
+const remaining = expenses.reduce((acc, curr)=>acc - curr.amount, budget)
+console.log(remaining)
